@@ -3,18 +3,16 @@ import React from 'react';
 interface ButtonProps {
   isPlus: boolean;
   value: number;
+  onClick: React.MouseEventHandler;
 }
 
-interface ButtonState {
+const Button: React.FC<ButtonProps> = (props) => {
+  const text = (props.isPlus ? '+' : '-') + props.value.toString();
+  return (
+    <button onClick={props.onClick}>
+      {text}
+    </button>
+  );
 }
 
-export default class Button extends React.Component<ButtonProps, ButtonState> {
-  render(): React.ReactNode {
-    const text: string = (this.props.isPlus ? '+' : '-') + this.props.value.toString();
-      return (
-        <button>
-          {text}
-        </button>
-      )
-  }
-}
+export default Button;
